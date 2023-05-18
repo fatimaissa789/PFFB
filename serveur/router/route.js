@@ -2,6 +2,8 @@ import { Router } from "express";
 const router = Router();
 //import controllers
 import * as controller from '../controllers/appController.js'
+//token bearer authorize
+import Auth from '../middleware/auth.js'
 /* POST */
 router.route("/register").post(controller.register);
 //router.route("/registerMail").post(controller.register);//send email
@@ -17,7 +19,7 @@ router.route('/createRsetSession').get(controller.createResetSession)//reset all
 
 
 /* PUT */
-router.route('/updateuser').put(controller.updateuser); //is use to update the user
+router.route('/updateuser').put(Auth,controller.updateUser); //is use to update the user
 router.route('/resetPassword').put(controller.resetPassword); //is use to update the password
 
 export default router;
