@@ -1,6 +1,6 @@
 /* const express =require('express') */
 
-import express from "express";
+import express, { json } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import connect from "./database/conn.js";
@@ -19,7 +19,8 @@ app.get("/", (req, res) => {
   res.status(201).json("Home get request");
 });
 /* api route */
-app.use('/api',router)
+app.use(
+  '/api',router)
 
 //start server only when have valid connection
 
@@ -29,7 +30,7 @@ connect().then(() => {
       console.log(`Server connected to http://localhost:${port}`);
     });
   } catch (error) {
-    console.log("cammot connect to the server");
+    console.log("cannot connect to the server");
   }
 }).catch(error => {
     console.log ('invalid database connection')
